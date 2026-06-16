@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mallipudi Neha Sanjana — AI/ML Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --card: #16161f;
+    --border: rgba(255,255,255,0.07);
+    --accent: #7c6bff;
+    --accent2: #00d4aa;
+    --text: #f0eeff;
+    --muted: #8b8aaa;
+    --faint: #3a3a55;
+    --mono: 'Space Mono', monospace;
+    --sans: 'Space Grotesk', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 4%;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 8% 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(124,107,255,0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: 10%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,212,170,0.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent2);
+    letter-spacing: 0.15em;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.4rem, 6vw, 5rem);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.3rem;
+  }
+  .hero h1 .name-accent { color: var(--accent); }
+  .hero-role {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--muted);
+    font-weight: 400;
+    margin-bottom: 1.8rem;
+    letter-spacing: 0.01em;
+  }
+  .hero-bio {
+    max-width: 560px;
+    font-size: 1.05rem;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    line-height: 1.75;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: var(--sans);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+  }
+  .btn-primary:hover { background: #6a59e8; transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 0.5px solid var(--faint);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* SECTION COMMON */
+  section { padding: 5rem 8%; }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .section-sub {
+    color: var(--muted);
+    max-width: 500px;
+    margin-bottom: 3rem;
+  }
+
+  /* SKILLS */
+  #skills { background: var(--surface); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+  .skill-card {
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1.4rem 1.5rem;
+  }
+  .skill-card-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .skill-card h3 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag {
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    background: rgba(124,107,255,0.1);
+    color: #a89eff;
+    border: 0.5px solid rgba(124,107,255,0.2);
+    font-family: var(--mono);
+  }
+  .tag.teal {
+    background: rgba(0,212,170,0.08);
+    color: #4de8c8;
+    border-color: rgba(0,212,170,0.2);
+  }
+  .tag.gray {
+    background: rgba(255,255,255,0.04);
+    color: var(--muted);
+    border-color: var(--border);
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-radius: 14px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: border-color 0.25s, transform 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .project-card:hover {
+    border-color: rgba(124,107,255,0.3);
+    transform: translateY(-3px);
+  }
+  .project-card:hover::before { opacity: 1; }
+  .project-header { display: flex; justify-content: space-between; align-items: flex-start; }
+  .project-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--faint);
+  }
+  .project-link {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: color 0.2s;
+  }
+  .project-link:hover { color: var(--accent); }
+  .project-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .project-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.65; }
+  .project-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: auto; }
+
+  /* CERTS */
+  #certifications { background: var(--surface); }
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+  .cert-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.25rem;
+  }
+  .cert-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+  }
+  .cert-dot.aws { background: rgba(255,153,0,0.12); }
+  .cert-dot.ibm { background: rgba(0,100,255,0.12); }
+  .cert-dot.google { background: rgba(0,212,170,0.1); }
+  .cert-info h4 { font-size: 0.95rem; font-weight: 500; margin-bottom: 0.15rem; }
+  .cert-info p { font-size: 0.8rem; color: var(--muted); }
+
+  /* EDUCATION */
+  .edu-timeline { display: flex; flex-direction: column; gap: 1.25rem; max-width: 700px; }
+  .edu-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    position: relative;
+  }
+  .edu-item::before {
+    content: '';
+    position: absolute;
+    left: 119px; top: 8px; bottom: -1.25rem;
+    width: 0.5px;
+    background: var(--faint);
+  }
+  .edu-item:last-child::before { display: none; }
+  .edu-year {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    padding-top: 4px;
+    text-align: right;
+    letter-spacing: 0.05em;
+  }
+  .edu-content {
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 1.1rem 1.25rem;
+    position: relative;
+  }
+  .edu-content::before {
+    content: '';
+    position: absolute;
+    left: -8px; top: 8px;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .edu-content h4 { font-size: 0.97rem; font-weight: 500; margin-bottom: 0.2rem; }
+  .edu-content p { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.3rem; }
+  .edu-grade {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent2);
+  }
+
+  /* CONTACT */
+  #contact { text-align: center; padding: 5rem 8% 7rem; }
+  #contact h2 { margin-bottom: 0.5rem; }
+  #contact .section-sub { margin: 0 auto 2.5rem; }
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 0.5px solid var(--border);
+    padding: 1.5rem 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--faint);
+    font-family: var(--mono);
+  }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 640px) {
+    nav { padding: 1rem 5%; }
+    .nav-links { gap: 1.2rem; }
+    section { padding: 4rem 5%; }
+    .hero { padding: 7rem 5% 3rem; }
+    .edu-item { grid-template-columns: 80px 1fr; gap: 1rem; }
+    .edu-item::before { left: 79px; }
+    footer { flex-direction: column; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">neha.dev</span>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#certifications">Certs</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">// B.Tech CSE · AI & ML</p>
+  <h1>Mallipudi<br><span class="name-accent">Neha Sanjana</span></h1>
+  <p class="hero-role">AI/ML Developer &amp; Generative AI Enthusiast</p>
+  <p class="hero-bio">
+    B.Tech student building intelligent systems with Python, Generative AI, and computer vision. Passionate about turning ideas into working AI products — from fashion recommendation engines to gesture-controlled drawing apps.
+  </p>
+  <div class="hero-ctas">
+    <a href="https://github.com/NehaSanjana24" target="_blank" class="btn btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+      GitHub
+    </a>
+    <a href="https://linkedin.com/in/mallipudi-neha-sanjana/" target="_blank" class="btn btn-outline">
+      LinkedIn ↗
+    </a>
+    <a href="mailto:mallipudi.nehasanjana@gmail.com" class="btn btn-outline">
+      Get in touch
+    </a>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">// 01 — WHAT I WORK WITH</p>
+  <h2>Technical skills</h2>
+  <p class="section-sub">Building with Python, AI/ML libraries, and cloud tools.</p>
+
+  <div class="skills-grid reveal">
+    <div class="skill-card">
+      <div class="skill-card-icon">🐍</div>
+      <h3>Languages</h3>
+      <div class="skill-tags">
+        <span class="tag">Python 3.8+</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">🤖</div>
+      <h3>AI / ML Libraries</h3>
+      <div class="skill-tags">
+        <span class="tag teal">NumPy</span>
+        <span class="tag teal">Pandas</span>
+        <span class="tag teal">Matplotlib</span>
+        <span class="tag teal">Seaborn</span>
+        <span class="tag teal">SciPy</span>
+        <span class="tag teal">MediaPipe</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">✨</div>
+      <h3>Generative AI</h3>
+      <div class="skill-tags">
+        <span class="tag">Prompt Engineering</span>
+        <span class="tag">LLM Utilization</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">🛠️</div>
+      <h3>Tools & Dev</h3>
+      <div class="skill-tags">
+        <span class="tag gray">VS Code</span>
+        <span class="tag gray">Google Colab</span>
+        <span class="tag gray">Git</span>
+        <span class="tag gray">GitHub</span>
+        <span class="tag gray">AWS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">// 02 — WHAT I'VE BUILT</p>
+  <h2>Projects</h2>
+  <p class="section-sub">Real-world AI applications built with Python and computer vision.</p>
+
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-header">
+        <span class="project-num">01</span>
+        <a href="https://github.com/NehaSanjana24/StyleSense" target="_blank" class="project-link">
+          View on GitHub ↗
+        </a>
+      </div>
+      <h3><a href="https://github.com/NehaSanjana24/StyleSense" target="_blank" style="color:inherit;text-decoration:none;">StyleSense</a></h3>
+      <p class="project-desc">
+        A Generative AI-powered fashion recommendation system that uses LLMs and prompt engineering to suggest personalized outfit combinations based on user preferences, body type, and occasion.
+      </p>
+      <div class="project-tech">
+        <span class="tag">Python</span>
+        <span class="tag teal">Generative AI</span>
+        <span class="tag teal">LLM</span>
+        <span class="tag gray">Feb 2026</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-header">
+        <span class="project-num">02</span>
+        <a href="https://github.com/NehaSanjana24/Advanced-Air-Drawing" target="_blank" class="project-link">
+          View on GitHub ↗
+        </a>
+      </div>
+      <h3><a href="https://github.com/NehaSanjana24/Advanced-Air-Drawing" target="_blank" style="color:inherit;text-decoration:none;">Advanced Air Drawing</a></h3>
+      <p class="project-desc">
+        An AI-powered virtual whiteboard using real-time hand gesture recognition via MediaPipe. Draw with your index finger, switch colors with a pinch, erase with two fingers, and clear the canvas with an open palm — all through a webcam.
+      </p>
+      <div class="project-tech">
+        <span class="tag">Python</span>
+        <span class="tag teal">MediaPipe</span>
+        <span class="tag teal">Computer Vision</span>
+        <span class="tag teal">OpenCV</span>
+        <span class="tag gray">June 2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <p class="section-label">// 03 — LEARNING & GROWTH</p>
+  <h2>Certifications</h2>
+  <p class="section-sub">Continuous learning across cloud, AI, and machine learning domains.</p>
+
+  <div class="certs-grid reveal">
+    <div class="cert-item">
+      <div class="cert-dot aws">☁️</div>
+      <div class="cert-info">
+        <h4><a href="https://drive.google.com/file/d/1pWxwCX_YnALQdM0xVwc87qCUWp3T38i8/view?usp=sharing" target="_blank" style="color:inherit;text-decoration:none;">AWS Cloud Computing Workshop ↗</a></h4>
+        <p>Amazon Web Services · VIKSHA-327<br>July 7–12, 2025</p>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-dot ibm">🔷</div>
+      <div class="cert-info">
+        <h4><a href="https://drive.google.com/file/d/10McBYud33EeoTDql4NhoXdYykMxqa0jY/view?usp=drive_link" target="_blank" style="color:inherit;text-decoration:none;">Introduction to Generative AI ↗</a></h4>
+        <p>IBM · 2025–2026</p>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-dot google">🌐</div>
+      <div class="cert-info">
+        <h4><a href="https://drive.google.com/file/d/1hgGEzLFAuoCl9YDU4z2IY2L2BOC-O7Eg/view?usp=drive_link" target="_blank" style="color:inherit;text-decoration:none;">Google Gen AI Academy 2.0 ↗</a></h4>
+        <p>Google · 2025–2026</p>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-dot" style="background:rgba(124,107,255,0.12);">📁</div>
+      <div class="cert-info">
+        <h4><a href="https://drive.google.com/drive/folders/1OQn1RKaMLnz6QX6XwTn0iUP4XlqZ0DMG?usp=drive_link" target="_blank" style="color:inherit;text-decoration:none;">Additional Certificates ↗</a></h4>
+        <p>View all other certifications</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <p class="section-label">// 04 — BACKGROUND</p>
+  <h2>Education</h2>
+  <p class="section-sub">Strong academic foundation with consistent top performance.</p>
+
+  <div class="edu-timeline reveal">
+    <div class="edu-item">
+      <div class="edu-year">2024–<br>present</div>
+      <div class="edu-content">
+        <h4>B.Tech in Computer Science (AI &amp; ML)</h4>
+        <p>Narsaraopeta Engineering College</p>
+        <span class="edu-grade">CGPA: 8.93 / 10 · 3rd Year</span>
+      </div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-year">2024</div>
+      <div class="edu-content">
+        <h4>Class XII — Intermediate (BIEAP)</h4>
+        <p>Deeksha Junior College</p>
+        <span class="edu-grade">93.6%</span>
+      </div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-year">2022</div>
+      <div class="edu-content">
+        <h4>Class X — SSC</h4>
+        <p>Sunridge EM School</p>
+        <span class="edu-grade">95.5%</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">// 05 — LET'S CONNECT</p>
+  <h2>Get in touch</h2>
+  <p class="section-sub">
+    Open to internships, collaborations, and interesting AI/ML projects. Feel free to reach out!
+  </p>
+  <div class="contact-links">
+    <a href="mailto:mallipudi.nehasanjana@gmail.com" class="btn btn-primary">
+      ✉️ mallipudi.nehasanjana@gmail.com
+    </a>
+    <a href="https://linkedin.com/in/mallipudi-neha-sanjana/" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+    <a href="https://github.com/NehaSanjana24" target="_blank" class="btn btn-outline">GitHub ↗</a>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Mallipudi Neha Sanjana</span>
+  <span>Built with ❤️ · Vijayawada, AP</span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
